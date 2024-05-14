@@ -69,3 +69,7 @@ class LoginController {
     }
   }
 }
+
+class HomeArguments {
+  HomeArguments(String token);
+}

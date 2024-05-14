@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:modulo01/pages/home.dart';
 import 'package:modulo01/widgets/toast.dart';
 
+import 'login.dart';
+
 class CadastroPerfilController {
   static Future<List> getTreinos(token) async {
     try {
