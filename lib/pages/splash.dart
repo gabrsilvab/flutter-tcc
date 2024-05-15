@@ -1,6 +1,8 @@
+//IMPORTA OS MATERIAIS
 import 'package:flutter/material.dart';
 import 'package:modulo01/controllers/cache.dart';
 
+//CRIA UMA CLASSE CHAMADA SPLASH
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -8,6 +10,7 @@ class Splash extends StatefulWidget {
   State<Splash> createState() => _SplashState();
 }
 
+//ELE REDIRECIONA A TELA DE LOGIN
 class _SplashState extends State<Splash> {
   @override
   void initState() {
@@ -21,6 +24,7 @@ class _SplashState extends State<Splash> {
     );
   }
 
+  //ELE FAZ APARECER A LOGO DO APLICATIVO QUANDO O USUÁRIO ENTRER NELE
   @override
   Widget build(BuildContext context) {
     return Scaffold(
