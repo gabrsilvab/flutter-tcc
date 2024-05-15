@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
       (value) async {
         CacheController.logar();
         await Future.delayed(Duration(seconds: value[0]));
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushNamed(context, '/login');
       },
     );
   }
