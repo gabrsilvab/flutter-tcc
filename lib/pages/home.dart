@@ -1,11 +1,12 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:flutter/material.dart';
+// Pacotes importados //
+import 'package:flutter/material.dart'; 
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
-void main() {
+void main() { //void main() {} está chamando runApp() com um widget Home como argumento //
   runApp(const Home(userName: "User"));
 }
 
@@ -13,8 +14,7 @@ class Home extends StatefulWidget {
   final String userName;
 
   const Home({Key? key, required this.userName}) : super(key: key);
-  static const routeName = '/home';
-
+  static const routeName = '/home'; //define uma classe chamada Home em Flutter, que representa a tela inicial do aplicativo. //
   @override
   // ignore: library_private_types_in_public_api
   _HomeState createState() => _HomeState();
@@ -23,7 +23,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late FlutterBlue flutterBlue;
   bool isWatchConnected = false;
-  late String _editedName;
+  late String _editedName; //define a classe _HomeState, que é o estado associado ao widget Home em Flutter.//
 
   @override
   void initState() {
