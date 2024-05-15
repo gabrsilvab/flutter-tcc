@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; //IMPORTAÇÃO DE PACOTES
 import 'package:modulo01/controllers/cadastro_perfil.dart';
 import 'package:modulo01/controllers/validator.dart';
 import 'package:modulo01/styles/styles.dart';
@@ -11,7 +11,7 @@ class CadastroPerfil extends StatefulWidget {
   State<CadastroPerfil> createState() => _CadastroPerfilState();
 }
 
-class CadastroPerfilArguments {
+class CadastroPerfilArguments { // CLASSE CADASTRO 
   final String nome;
   final String email;
   final String token;
@@ -19,7 +19,7 @@ class CadastroPerfilArguments {
   CadastroPerfilArguments(this.nome, this.email, this.token);
 }
 
-class _CadastroPerfilState extends State<CadastroPerfil> {
+class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO PARA A TELA DE CADASTRO DE UM PERFIL
   List<bool> exercicios = [false, false, false];
   List<List<bool>> diasExercicios = [
     [false, false, false, false, false, false, false],
@@ -27,7 +27,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
     [false, false, false, false, false, false, false],
   ];
 
-  String? peso;
+  String? peso; // DECLARANDO ALGUMAS VARIÁVEIS DENTRO DO ESTADO DA TELA DE CADASTRO
   String? altura;
   double? imc;
   List<String> horario = ['00:00', '00:00', '00:00'];
@@ -35,7 +35,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
 
   final _formKey = GlobalKey<FormState>();
 
-  calcularIMC() {
+  calcularIMC() { // Responsável por calcular o Índice de Massa Corporal (IMC) com base no peso e altura fornecidos pelo usuário. 
     int pesoInt = int.parse(peso!);
     double alturaInt = double.parse(altura!);
 
@@ -65,7 +65,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
 
   DateTime? _dataSelecionada;
 
-  Future<void> _selecionarData(BuildContext context) async {
+  Future<void> _selecionarData(BuildContext context) async { //Definindo uma função assíncrona _selecionarData que permite ao usuário selecionar uma data por meio de um seletor de data no Flutter.
     final dataEscolhida = await showDatePicker(
       context: context,
       initialDate: DateTime(DateTime.now().year - 18),
