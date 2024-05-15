@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modulo01/controllers/login.dart';
-import 'package:modulo01/controllers/validator.dart';
-import 'package:modulo01/widgets/toast.dart';
+import 'package:modulo01/controllers/validator.dart'; 
+import 'package:modulo01/widgets/toast.dart'; //importar as extensões necessárias//
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
