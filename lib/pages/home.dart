@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
 
     return MaterialApp(
       theme: ThemeData.dark(),
-      scrollBehavior: const MaterialScrollBehavior().copyWith(scrollbars: false),
+      scrollBehavior: const MaterialScrollBehavior().copyWith(scrollbars: false), //Scroll do Site//
       home: DefaultTabController(
         length: 5,
         child: Scaffold(
@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
                             ],
                           ),
                         ),
-                        Positioned(
+                        Positioned( // Texto Bem - Vindo//
                           top: 0,
                           left: 0,
                           child: Padding(
@@ -77,7 +77,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
-                        Positioned(
+                        Positioned( //Imagens//
                           top: 35,
                           left: 0,
                           child: Padding(
@@ -157,9 +157,9 @@ class _HomeState extends State<Home> {
                             child: const Icon(Icons.chat),
                           ),
                         ),
-                      ],
+                      ], //Fim das imagens//
                     ),
-                    Center(
+                    Center( //Estilização Tab2//
                       child: SingleChildScrollView (
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -186,15 +186,15 @@ class _HomeState extends State<Home> {
                             Image.asset(
                               'assets/monitoramento.png',
                               width: MediaQuery.of(context).size.width,
-                              height: 355,
+                              height: 355, //Fim da estilização//
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    Center( // TAB3 -estrutura de um widget de coluna que contém vários elementos, incluindo um texto e uma imagem.//
+                      child: Column( //widget de layout que organiza seus filhos em uma única coluna vertical. Os widgets passados para o parâmetro children são dispostos de cima para baixo.//
+                        mainAxisAlignment: MainAxisAlignment.center, //define como os filhos da coluna são alinhados verticalmente. Neste caso, eles são centralizados verticalmente na coluna.//
                         children: [
                           const SizedBox(
                             height: 20,
@@ -213,7 +213,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Center(
-                      child: Column(
+                      child: Column( //TAB 4//
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const SizedBox(
@@ -225,14 +225,14 @@ class _HomeState extends State<Home> {
                           ),
                           const SizedBox(height: 20),
                           Image.asset(
-                            isWatchConnected ? 'assets/watch-on.png' : 'assets/watch-off.png',
+                            isWatchConnected ? 'assets/watch-on.png' : 'assets/watch-off.png', //Relógio em funcionamento//
                             width: MediaQuery.of(context).size.width * 0.8,
                             height: MediaQuery.of(context).size.height * 0.6,
                           ),
                         ],
                       ),
                     ),
-                    SingleChildScrollView(
+                    SingleChildScrollView( //Puxa a primeira imagem//
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -241,15 +241,15 @@ class _HomeState extends State<Home> {
                             backgroundImage: AssetImage('assets/profile_image.jfif'),
                           ),
                           const SizedBox(height: 20),
-                          Text(
+                          Text( //Puxar nome //
                             _editedName,
                             style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 10), //Puxar modal//
                           ElevatedButton(
                             onPressed: () {
                               showEditModal(context);
-                            },
+                            }, //Puxar todas as informações necessárias //
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red,
                             ),
@@ -267,7 +267,7 @@ class _HomeState extends State<Home> {
                             left: 0,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
+                              child: Image.asset( //Imagem abaixo da Tab 5//
                                 'assets/kratos_plano.png',
                                 width: MediaQuery.of(context).size.width,
                                 height: 250,
@@ -282,7 +282,7 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-          bottomNavigationBar: const TabBar(
+          bottomNavigationBar: const TabBar( //Galeria de Icons//
             tabs: [
               Tab(icon: Icon(Icons.home)),
               Tab(icon: Icon(Icons.assessment_sharp)),
@@ -301,7 +301,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void showEditModal(BuildContext context) {
+  void showEditModal(BuildContext context) { //Editar Modal //
     // Variáveis para armazenar os valores dos campos
     String editedName = _editedName;
     String editedEmail = '';
