@@ -187,7 +187,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
                             ),
                           ),
                         ),
-                        Container(height: 10),
+                        Container(height: 10), // o TextFormField anterior, há outro Container com altura de 10 unidades, possivelmente para adicionar um espaço entre os widgets. Em seguida, há outro TextFormField.
                         TextFormField(
                           keyboardType: TextInputType.name,
                           validator: (value) =>
