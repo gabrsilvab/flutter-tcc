@@ -77,14 +77,14 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
       ),
     );
 
-    if (dataEscolhida != null && dataEscolhida != _dataSelecionada) {
+    if (dataEscolhida != null && dataEscolhida != _dataSelecionada) { // DATA DEFINIDA
       setState(() {
         _dataSelecionada = dataEscolhida;
       });
     }
   }
 
-  setHorario(int i) async {
+  setHorario(int i) async { //DEFINIR HORÁRIO
     final a = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
