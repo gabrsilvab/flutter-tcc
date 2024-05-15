@@ -7,18 +7,18 @@ import 'package:modulo01/controllers/validator.dart';
 import 'package:modulo01/widgets/toast.dart'; //importar as extensões necessárias//
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
-
+  const Login({Key? key}) : super(key: key); //a classe Login é usada para criar um widget que representa a tela de login em um aplicativo Flutter.// 
+  
   @override
   State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> { // Criar classes email e string//
   String? email;
   String? senha;
   final _formKey = GlobalKey<FormState>();
 
-  bool obscureText = true;
+  bool obscureText = true; //Deixar texto secreto 7 com asteriscos//
   bool enabled = true;
 
   bloquear() async {
@@ -31,9 +31,9 @@ class _LoginState extends State<Login> {
     setState(() {
       enabled = true;
     });
-  }
+  } 
 
-  Future<void> realizarLogin() async {
+  Future<void> realizarLogin() async { //Conecta com API & Verificação email e senha//
     final url = Uri.parse('http://10.91.234.33:3000/clientes/cadastro');
     try {
       final response = await http.post(
@@ -63,7 +63,7 @@ class _LoginState extends State<Login> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return MaterialApp(
+    return MaterialApp( //Estilização da página//
       theme: ThemeData.dark(),
       home: Scaffold(
         backgroundColor: Colors.black,
@@ -88,7 +88,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 100), // Espaçamento aumentado
+                      const SizedBox(height: 100), // Espaçamento aumentado //Formulário email//
                       Form(
                         key: _formKey,
                         child: Column(
@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 20), // Espaçamento aumentado
+                            const SizedBox(height: 20), // Espaçamento aumentado //Formulário Senha//
                             TextFormField(
                               enabled: enabled,
                               keyboardType: TextInputType.visiblePassword,
@@ -161,7 +161,7 @@ class _LoginState extends State<Login> {
                    ),
                      ),
                       ),
-                            const SizedBox(height: 40), // Espaçamento aumentado
+                            const SizedBox(height: 40), // Espaçamento aumentado //Botão para Login//
                            ElevatedButton(
   onPressed: enabled
       ? () async {
@@ -185,7 +185,7 @@ class _LoginState extends State<Login> {
     ),
   ),
 ),
-                            Row(
+                            Row( //Direciona para o cadastro//
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
