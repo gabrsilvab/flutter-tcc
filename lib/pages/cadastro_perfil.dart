@@ -125,7 +125,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      Text( //TEXTO DE BEM - VINDO
                         'Seja bem-vindo(a)',
                         style: TextStyle(
                           fontSize: 30,
@@ -144,7 +144,9 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
                       ),
                     ],
                   ),
-                  Container(height: 20),
+                  Container(height: 20), //  adiciona um Container com uma altura de 20 unidades, 
+                  criando um espaço entre os widgets. Em seguida, há um Form que utiliza uma chave _formKey para identificação. 
+                  Dentro do Form, há um Column, onde os elementos são organizados verticalmente.// 
                   Form(
                     key: _formKey,
                     child: Column(
@@ -162,7 +164,8 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
                               }
                             });
                           },
-                          child: TextFormField(
+                          child: TextFormField( // um GestureDetector envolve um TextFormField. Quando o usuário toca no TextFormField, 
+                            o GestureDetector detecta o toque e chama a função assíncrona _selecionarData(context).// 
                             controller: _controller,
                             keyboardType: TextInputType.name,
                             validator: (value) =>
