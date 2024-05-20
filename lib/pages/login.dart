@@ -44,7 +44,7 @@ class _LoginState extends State<Login> { // Criar classes email e string//
         },
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 404) {
         // Login bem-sucedido
         Navigator.pushNamed(context, '/tela_de_inicio'); // Substitua pelo nome da tela de início
       } else {
