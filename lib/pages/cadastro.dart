@@ -57,7 +57,7 @@ class _CadastroState extends State<Cadastro> {
         },
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         // Cadastro bem-sucedido
         await enviarParaWorkbench(); // Enviar para o Workbench
         setState(() {
