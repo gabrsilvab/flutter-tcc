@@ -176,8 +176,7 @@ class _CadastroState extends State<Cadastro> {
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red, // Cor do texto quando selecionado
                                     ),
                                   ),
                                   labelText: 'Email',
