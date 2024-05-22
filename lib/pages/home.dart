@@ -238,10 +238,10 @@ class _HomeState extends State<Home> {
                         children: [
                           const CircleAvatar(
                             radius: 50,
-                            backgroundImage: AssetImage('assets/profile_image.jfif'),
+                            backgroundImage: AssetImage('assets/profile_image.png'),
                           ),
                           const SizedBox(height: 20),
-                          Text( //Puxar nome //
+                           Text( //Puxar nome //
                             _editedName,
                             style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                           ),
@@ -270,10 +270,61 @@ class _HomeState extends State<Home> {
                               child: Image.asset( //Imagem abaixo da Tab 5//
                                 'assets/kratos_plano.png',
                                 width: MediaQuery.of(context).size.width,
-                                height: 250,
+                                height: 250,           
                               ),
                             ),
                           ),
+                                     SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            'Cartão',
+                            style: TextStyle(fontSize: 25),
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Gerenciar Cartão',
+                                style: TextStyle(fontSize: 15, color: Colors.red),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Image.asset(
+                            'assets/cartao.png',
+                            width: MediaQuery.of(context).size.width * 0.8,
+                          ),
+                          const SizedBox(height: 20),
+                           const Text(
+                            'Cartão Kratos',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+  
+                              SizedBox(width: 10),
+                              Text(
+                                'Imprimir',
+                                style: TextStyle(fontSize: 15, color: Colors.red),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Image.asset(
+                            'assets/cartaokratos.png',
+                            width: MediaQuery.of(context).size.width * 0.8,
+                          ),
+                        ],
+                      ),
+                    ), // Tab 5
                         ],
                       ),
                     ),

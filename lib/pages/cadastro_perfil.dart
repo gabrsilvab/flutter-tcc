@@ -144,9 +144,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
                       ),
                     ],
                   ),
-                  Container(height: 20), //  adiciona um Container com uma altura de 20 unidades, 
-                  criando um espaço entre os widgets. Em seguida, há um Form que utiliza uma chave _formKey para identificação. 
-                  Dentro do Form, há um Column, onde os elementos são organizados verticalmente.// 
+                  Container(height: 20),
                   Form(
                     key: _formKey,
                     child: Column(
@@ -164,8 +162,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> { //DEFININDO O ESTADO 
                               }
                             });
                           },
-                          child: TextFormField( // um GestureDetector envolve um TextFormField. Quando o usuário toca no TextFormField, 
-                            o GestureDetector detecta o toque e chama a função assíncrona _selecionarData(context).// 
+                          child: TextFormField( 
                             controller: _controller,
                             keyboardType: TextInputType.name,
                             validator: (value) =>

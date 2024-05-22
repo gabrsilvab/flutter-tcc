@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/splash': (context) => const Splash(),
-        Home.routeName: (context) =>  const Home(userName: 'User',),
+        Home.routeName: (context) =>  const Home(userName: 'Gabriel Phillipe',),
         '/login': (context) => const Login(),
         '/cadastro': (context) => const Cadastro(),
         '/pagamento': (context) => const Cadastro(),

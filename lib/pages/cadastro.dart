@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:modulo01/controllers/validator.dart';
+import 'package:modulo01/controllers/validator.dart'; // Certifique-se de ter esta classe para validação
+
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
 
+
   @override
   State<Cadastro> createState() => _CadastroState();
 }
+
 
 class _CadastroState extends State<Cadastro> {
   String? nome;
@@ -23,19 +26,20 @@ class _CadastroState extends State<Cadastro> {
   bool aceitarTermos = false;
   bool cadastradoComSucesso = false;
 
+
   final _formKey = GlobalKey<FormState>();
+
 
   bool obscureText = true;
   bool enabled = true;
 
+
   Future<void> enviarParaWorkbench() async {
-    // Envie os dados para o Workbench aqui
     print('Enviando dados para o Workbench');
-    // Exemplo de requisição fictícia para o Workbench
-    // Substitua esta linha pela lógica real de envio para o Workbench
-    await Future.delayed(Duration(seconds: 2)); // Simulando uma requisição
+    await Future.delayed(Duration(seconds: 2));
     print('Dados enviados para o Workbench com sucesso');
   }
+
 
   Future<void> realizarCadastro() async {
     final url = Uri.parse('http://10.91.234.33:3000/clientes/cadastro');
@@ -46,7 +50,7 @@ class _CadastroState extends State<Cadastro> {
           'nome': nome!,
           'sobrenome': sobrenome!,
           'email': email!,
-          'senha': senha!, // Incluído campo senha no corpo da requisição
+          'senha': senha!,
           'cpf': cpf!,
           'data_nascimento': data_nascimento!,
           'nacionalidade': nacionalidade!,
@@ -57,26 +61,23 @@ class _CadastroState extends State<Cadastro> {
         },
       );
 
+
       if (response.statusCode == 201) {
-        // Cadastro bem-sucedido
-        await enviarParaWorkbench(); // Enviar para o Workbench
-        setState(() {
-          cadastradoComSucesso = true;
-        });
+        Navigator.pushReplacementNamed(context, '/pagamento');
       } else {
-        // Cadastro falhou
         print('Erro ao cadastrar: ${response.body}');
       }
     } catch (e) {
-      // Erro ao fazer a requisição
       print('Erro ao realizar cadastro: $e');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
 
     return MaterialApp(
       theme: ThemeData.dark(),
@@ -90,16 +91,15 @@ class _CadastroState extends State<Cadastro> {
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                  height: height * 0.3, // Altura da imagem ajustável
+                  height: height * 0.3,
                   child: Image.asset(
-                    'assets/menu-cadastrar.png', // Altere para o caminho da sua imagem do menu
+                    'assets/menu-cadastrar.png',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                    top: height * 0.3 + 20, left: 20, right: 20),
+                padding: EdgeInsets.only(top: height * 0.3 + 20, left: 20, right: 20),
                 child: SizedBox(
                   width: width,
                   child: SingleChildScrollView(
@@ -107,7 +107,7 @@ class _CadastroState extends State<Cadastro> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 20), // Espaçamento aumentado
+                        const SizedBox(height: 20),
                         Form(
                           key: _formKey,
                           child: Column(
@@ -117,17 +117,18 @@ class _CadastroState extends State<Cadastro> {
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.name,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, insira seu nome';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => nome = value,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Nome',
@@ -137,22 +138,22 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.name,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, insira seu sobrenome';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => sobrenome = value,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Sobrenome',
@@ -162,21 +163,22 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty || !value.contains('@')) {
+                                    return 'Por favor, insira um email válido';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => email = value,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors.red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Email',
@@ -186,23 +188,23 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                obscureText: true, // Campo de senha
+                                obscureText: obscureText,
                                 keyboardType: TextInputType.visiblePassword,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                validator: (value) {
+                                  if (value == null || value.length < 6) {
+                                    return 'A senha deve ter pelo menos 6 caracteres';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => senha = value,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Senha',
@@ -210,24 +212,35 @@ class _CadastroState extends State<Cadastro> {
                                     fontFamily: 'Montserrat',
                                     color: Colors.white,
                                   ),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      obscureText ? Icons.visibility : Icons.visibility_off,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        obscureText = !obscureText;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                keyboardType: TextInputType.number,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty || value.length != 11) {
+                                    return 'Por favor, insira um CPF válido com 11 dígitos';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => cpf = value,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'CPF',
@@ -237,22 +250,22 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                keyboardType: TextInputType.datetime,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, insira uma data de nascimento válida';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => data_nascimento = value,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Data de Nascimento',
@@ -262,22 +275,22 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                keyboardType: TextInputType.text,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, insira sua nacionalidade';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => nacionalidade = value,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Nacionalidade',
@@ -287,72 +300,72 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                keyboardType: TextInputType.number,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty || value.length != 2) {
+                                    return 'Por favor, insira um DDD válido com 2 dígitos';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => ddd = value,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
-                                  labelText: 'DDI',
+                                  labelText: 'DDD',
                                   labelStyle: TextStyle(
                                     fontFamily: 'Montserrat',
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                keyboardType: TextInputType.phone,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty || value.length < 8 || value.length > 9) {
+                                    return 'Por favor, insira um telefone válido';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => telefone = value,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
-                                  labelText: 'telefone',
+                                  labelText: 'Telefone',
                                   labelStyle: TextStyle(
                                     fontFamily: 'Montserrat',
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               TextFormField(
                                 enabled: enabled,
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) =>
-                                    ValidarDadosLogin.validarDados(
-                                  value!,
-                                ),
+                                keyboardType: TextInputType.text,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor, insira seu gênero';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (value) => genero = value,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors
-                                          .red, // Cor do texto quando selecionado
+                                      color: Colors.red,
                                     ),
                                   ),
                                   labelText: 'Gênero',
@@ -362,10 +375,9 @@ class _CadastroState extends State<Cadastro> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                  height: 20), // Espaçamento aumentado
+                              const SizedBox(height: 20),
                               CheckboxListTile(
-                                title: Text(
+                                title: const Text(
                                   'Aceitar termos',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
@@ -379,16 +391,14 @@ class _CadastroState extends State<Cadastro> {
                                   });
                                 },
                               ),
-                              const SizedBox(
-                                  height: 60), // Espaçamento aumentado
+                              const SizedBox(height: 60),
                               ElevatedButton(
                                 onPressed: enabled
                                     ? () async {
                                         if (_formKey.currentState!.validate()) {
                                           await realizarCadastro();
-                                          if (cadastradoComSucesso) { 
-                                            Navigator.pushNamed(
-                                                context, '/login');
+                                          if (cadastradoComSucesso) {
+                                            Navigator.pushNamed(context, '/login');
                                           }
                                         }
                                       }
@@ -403,7 +413,7 @@ class _CadastroState extends State<Cadastro> {
                                   'Cadastrar',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold, // Negrito
+                                    fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -422,7 +432,7 @@ class _CadastroState extends State<Cadastro> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Cadastro realizado com sucesso!',
                                         style: TextStyle(
                                           color: Colors.white,
@@ -432,10 +442,9 @@ class _CadastroState extends State<Cadastro> {
                                       SizedBox(height: 10),
                                       ElevatedButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, '/pagamento');
+                                          Navigator.pushNamed(context, '/pagamento');
                                         },
-                                        child: Text(
+                                        child: const Text(
                                           'Ir para o pagamento',
                                           style: TextStyle(color: Colors.white),
                                         ),
@@ -458,3 +467,6 @@ class _CadastroState extends State<Cadastro> {
     );
   }
 }
+
+
+

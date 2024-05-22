@@ -11,7 +11,7 @@ class MyChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        backgroundColor: Colors.red,
+        primaryColor: Colors.red,
       ),
       home: MyHomePage(),
     );
@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _tabs = [
-    Tab1Page(userName: "User"), // Passando o nome de usuário para a página da tab1
+    Tab1Page(userName: "Você"), // Passando o nome de usuário para a página da tab1
     Tab2Page(), // Página da tab2
   ];
 
@@ -73,14 +73,6 @@ class _Tab1PageState extends State<Tab1Page> {
     return Scaffold(
       appBar: AppBar(
         title: Text(''),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.clear, color: Colors.red), // Definindo a cor vermelha para o ícone
-            onPressed: () {
-              _clearMessages(); // Limpa as mensagens ao selecionar "Limpar mensagens"
-            },
-          ),
-        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -128,7 +120,7 @@ class _Tab2PageState extends State<Tab2Page> {
         title: Text(''),
         actions: [
           IconButton(
-            icon: Icon(Icons.clear, color: Colors.red), // Definindo a cor vermelha para o ícone
+            icon: Icon(Icons.delete, color: Colors.red), // Definindo a cor vermelha para o ícone
             onPressed: () {
               _clearMessages(); // Limpa as mensagens ao selecionar "Limpar mensagens"
             },
@@ -194,7 +186,7 @@ class _Tab2PageState extends State<Tab2Page> {
       DateTime now = DateTime.now();
       String formattedTime = '${now.hour}:${now.minute}';
       Map<String, dynamic> message = {
-        '_userName': 'User', // Substitua pelo nome do usuário
+        '_userName': 'Você', // Substitua pelo nome do usuário
         'text': text, // Usando o texto digitado pelo usuário
         'time': formattedTime,
       };

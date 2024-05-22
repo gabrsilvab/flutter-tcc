@@ -34,7 +34,7 @@ class _LoginState extends State<Login> { // Criar classes email e string//
   } 
 
   Future<void> realizarLogin() async { //Conecta com API & Verificação email e senha//
-    final url = Uri.parse('http://10.91.234.33:3000/clientes/cadastro');
+    final url = Uri.parse('http://10.91.234.33:3000/clientes/login');
     try {
       final response = await http.post(
         url,
@@ -46,7 +46,7 @@ class _LoginState extends State<Login> { // Criar classes email e string//
 
       if (response.statusCode == 404) {
         // Login bem-sucedido
-        Navigator.pushNamed(context, '/tela_de_inicio'); // Substitua pelo nome da tela de início
+        Navigator.pushNamed(context, '/home'); // Substitua pelo nome da tela de início
       } else {
         // Login falhou
         MyToast.gerarToast('Credenciais inválidas');

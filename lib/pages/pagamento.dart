@@ -1,10 +1,10 @@
-// ignore_for_file: non_constant_identifier_names, library_private_types_in_public_api
+import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart'; //Importar classe //
 
-Future<void> fetchData() async { //Conectar API //
+Future<void> fetchData() async {
   var http;
-  final response = await http.get(Uri.parse('http://10.91.234.33:3000/clientes/cadastroCartao'));
+  final response =
+      await http.get(Uri.parse('http://10.91.234.33:3000/clientes/registrar_cartoes'));
   if (response.statusCode == 200) {
     // Dados foram buscados com sucesso
     print(response.body);
@@ -14,16 +14,25 @@ Future<void> fetchData() async { //Conectar API //
   }
 }
 
+
 void main() {
   runApp(PaginaPagamento());
 }
 
-class PaginaPagamento extends StatelessWidget { //Verificar informações //
+
+class PaginaPagamento extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(), // Definindo o tema escuro
+      theme: ThemeData.dark().copyWith(
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          labelStyle: TextStyle(color: Colors.white), // Texto do rótulo branco
+        ),
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text(''),
@@ -35,10 +44,16 @@ class PaginaPagamento extends StatelessWidget { //Verificar informações //
               FormularioPagamento(),
               SizedBox(height: 20.0),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login'); // Redirecionamento para /login
+                  Navigator.pushNamed(context, '/login');
                 },
-                child: Text('Ir para Login'),
+                child: Text(
+                  'Ir para Login',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
@@ -48,18 +63,22 @@ class PaginaPagamento extends StatelessWidget { //Verificar informações //
   }
 }
 
+
 class FormularioPagamento extends StatefulWidget {
-  const FormularioPagamento({super.key});
+  const FormularioPagamento({Key? key}) : super(key: key);
+
 
   @override
   _FormularioPagamentoState createState() => _FormularioPagamentoState();
 }
 
-class _FormularioPagamentoState extends State<FormularioPagamento> { // As classes do Formulário //
+
+class _FormularioPagamentoState extends State<FormularioPagamento> {
   final _formKey = GlobalKey<FormState>();
 
+
   String digitos_cartao = '';
-  String bandeira_cartao = '';
+  String bandeira_cartao = 'Visa';
   String titular_cartao = '';
   String vencimento_cartao = '';
   String cvv_cartao = '';
@@ -70,9 +89,10 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
   String cidade = '';
   String uf = '';
 
+
   @override
   Widget build(BuildContext context) {
-    return Form( // Estilização do site //
+    return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,39 +102,51 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10.0),
-          TextFormField( // Inserir número do cartão //
+          TextFormField(
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               labelText: 'Número do Cartão',
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red), // Definindo a cor vermelha para o texto
-              ),
             ),
             onChanged: (value) {
               setState(() {
                 digitos_cartao = value;
               });
             },
-            validator: (value) { 
-              if (value!.isEmpty) { // Inserir número do cartão //
+            validator: (value) {
+              if (value!.isEmpty) {
                 return 'Por favor, insira o número do cartão';
               }
               return null;
             },
           ),
-          TextFormField( // Inserir bandeira //
+          DropdownButtonFormField<String>(
             decoration: InputDecoration(labelText: 'Bandeira'),
+            value: bandeira_cartao,
             onChanged: (value) {
               setState(() {
-                bandeira_cartao = value;
+                bandeira_cartao = value!;
               });
             },
+            items: <String>[
+              'Visa',
+              'Mastercard',
+              'American Express (Amex)',
+              'Elo',
+              'Hipercard',
+              'Diners Club International'
+            ].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(
+                  value,
+                  style: TextStyle(color: Colors.white), // Texto branco
+                ),
+              );
+            }).toList(),
           ),
-          TextFormField( //  Inserir Titular do cartão //
+          TextFormField(
             decoration: InputDecoration(
               labelText: 'Titular do Cartão',
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red), // Definindo a cor vermelha para o texto
-              ),
             ),
             onChanged: (value) {
               setState(() {
@@ -131,7 +163,7 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
           Row(
             children: <Widget>[
               Expanded(
-                child: TextFormField( //Inserir vencimento do cartão //
+                child: TextFormField(
                   decoration: InputDecoration(labelText: 'Vencimento'),
                   onChanged: (value) {
                     setState(() {
@@ -142,7 +174,8 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
               ),
               SizedBox(width: 10.0),
               Expanded(
-                child: TextFormField( //Inserir CVV do cartão //
+                child: TextFormField(
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(labelText: 'CVV'),
                   onChanged: (value) {
                     setState(() {
@@ -154,11 +187,12 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
             ],
           ),
           const Text(
-            'Endereço de Cobrança:', // Inserir endereço de cobrança //
+            'Endereço de Cobrança:',
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10.0),
-          TextFormField( // Inserir CEP //
+          TextFormField(
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(labelText: 'CEP'),
             onChanged: (value) {
               setState(() {
@@ -166,7 +200,7 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
               });
             },
           ),
-          TextFormField( // Inserir endereço //
+          TextFormField(
             decoration: InputDecoration(labelText: 'Endereço'),
             onChanged: (value) {
               setState(() {
@@ -174,7 +208,7 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
               });
             },
           ),
-          TextFormField( //Inserir Complemento //
+          TextFormField(
             decoration: InputDecoration(labelText: 'Complemento'),
             onChanged: (value) {
               setState(() {
@@ -185,7 +219,7 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
           Row(
             children: <Widget>[
               Expanded(
-                child: TextFormField( // Inserir Bairro //
+                child: TextFormField(
                   decoration: InputDecoration(labelText: 'Bairro'),
                   onChanged: (value) {
                     setState(() {
@@ -223,3 +257,6 @@ class _FormularioPagamentoState extends State<FormularioPagamento> { // As class
     );
   }
 }
+
+
+

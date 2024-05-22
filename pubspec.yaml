@@ -82,7 +82,9 @@ flutter:
     - assets/kratos_plano.png
     - assets/sem_mensagem.png
     - assets/homechat.png
-    - assets/profile_image.jfif
+    - assets/cartao.png
+    - assets/cartaokratos.png
+    - assets/profile_image.png
 
 
   #   - images/a_dot_ham.jpeg
