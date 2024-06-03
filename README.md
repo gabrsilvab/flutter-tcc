@@ -1,7 +1,7 @@
 # KratosFit App
 
 ## Sobre
-Este aplicativo foi desenvolvido por Gabriel Silva[GitHub do Gabriel Silva](https://github.com/gabrsilvab/) com Flutter como parte do Trabalho de Conclusão de Curso (TCC) do Curso Técnico de Desenvolvimento de Sistemas do Senai Shunji Nishimura. Atualmente, está em modo Beta, desenvolvido para a KratosFit e funcionando com a API de Gabriel P. [GitHub do Gabriel P.](https://github.com/gabsouzkkj/).
+Este aplicativo foi desenvolvido por [Gabriel Silva](https://github.com/gabrsilvab/) com Flutter como parte do Trabalho de Conclusão de Curso (TCC) do Curso Técnico de Desenvolvimento de Sistemas do Senai Shunji Nishimura. Atualmente, está em modo Beta, desenvolvido para a KratosFit e funcionando com a API de [Gabriel P.](https://github.com/gabsouzkkj/).
 
 ## Funcionalidades
 - **Cadastro de Usuários**: Permite que novos usuários se cadastrem na plataforma.
