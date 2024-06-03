@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modulo01/controllers/validator.dart'; // Certifique-se de ter esta classe para validação
 
-
+// Classe principal da tela de cadastro, que é um StatefulWidget
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
-
 
   @override
   State<Cadastro> createState() => _CadastroState();
 }
 
-
+// Estado da classe Cadastro
 class _CadastroState extends State<Cadastro> {
+  // Variáveis para armazenar os dados do formulário
   String? nome;
   String? sobrenome;
   String? email;
@@ -26,21 +26,21 @@ class _CadastroState extends State<Cadastro> {
   bool aceitarTermos = false;
   bool cadastradoComSucesso = false;
 
-
+  // Chave para o formulário
   final _formKey = GlobalKey<FormState>();
 
-
+  // Variáveis de controle de exibição
   bool obscureText = true;
   bool enabled = true;
 
-
+  // Função para simular o envio de dados para um Workbench
   Future<void> enviarParaWorkbench() async {
     print('Enviando dados para o Workbench');
     await Future.delayed(Duration(seconds: 2));
     print('Dados enviados para o Workbench com sucesso');
   }
 
-
+  // Função para realizar o cadastro enviando os dados para a API
   Future<void> realizarCadastro() async {
     final url = Uri.parse('http://10.91.234.33:3000/clientes/cadastro');
     try {
@@ -61,7 +61,7 @@ class _CadastroState extends State<Cadastro> {
         },
       );
 
-
+      // Verifica o status da resposta da API
       if (response.statusCode == 201) {
         Navigator.pushReplacementNamed(context, '/pagamento');
       } else {
@@ -72,12 +72,10 @@ class _CadastroState extends State<Cadastro> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
 
     return MaterialApp(
       theme: ThemeData.dark(),
@@ -86,6 +84,7 @@ class _CadastroState extends State<Cadastro> {
         body: SingleChildScrollView(
           child: Stack(
             children: [
+              // Imagem de cabeçalho
               Positioned(
                 top: 0,
                 left: 0,
@@ -98,6 +97,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
+              // Formulário de cadastro
               Padding(
                 padding: EdgeInsets.only(top: height * 0.3 + 20, left: 20, right: 20),
                 child: SizedBox(
@@ -114,6 +114,7 @@ class _CadastroState extends State<Cadastro> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              // Campo de nome
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.name,
@@ -139,6 +140,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de sobrenome
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.name,
@@ -164,6 +166,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de email
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.emailAddress,
@@ -189,6 +192,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de senha
                               TextFormField(
                                 enabled: enabled,
                                 obscureText: obscureText,
@@ -226,6 +230,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de CPF
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.number,
@@ -251,6 +256,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de data de nascimento
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.datetime,
@@ -276,6 +282,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de nacionalidade
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.text,
@@ -301,6 +308,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de DDD
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.number,
@@ -326,6 +334,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de telefone
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.phone,
@@ -351,6 +360,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Campo de gênero
                               TextFormField(
                                 enabled: enabled,
                                 keyboardType: TextInputType.text,
@@ -376,6 +386,7 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                               const SizedBox(height: 20),
+                              // Checkbox para aceitar termos
                               CheckboxListTile(
                                 title: const Text(
                                   'Aceitar termos',
@@ -392,6 +403,7 @@ class _CadastroState extends State<Cadastro> {
                                 },
                               ),
                               const SizedBox(height: 60),
+                              // Botão de cadastro
                               ElevatedButton(
                                 onPressed: enabled
                                     ? () async {
@@ -421,6 +433,7 @@ class _CadastroState extends State<Cadastro> {
                             ],
                           ),
                         ),
+                        // Exibição de mensagem de sucesso
                         if (cadastradoComSucesso)
                           Container(
                             color: Colors.black.withOpacity(0.8),
@@ -467,6 +480,3 @@ class _CadastroState extends State<Cadastro> {
     );
   }
 }
-
-
-
