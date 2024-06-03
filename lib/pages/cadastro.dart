@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:modulo01/controllers/validator.dart'; // Certifique-se de ter esta classe para validação
+import 'package:modulo01/controllers/validator.dart'; 
 
 // Classe principal da tela de cadastro, que é um StatefulWidget
 class Cadastro extends StatefulWidget {
