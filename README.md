@@ -20,6 +20,6 @@ Siga os passos abaixo para configurar o projeto localmente:
 
 1. Clone este repositório:
    ```sh
-   git clone https://github.com/gabrsilvab/flutter-app.git
+   git clone https://github.com/gabrsilvab/flutter-tcc.git
 
 Salve esse texto em um arquivo chamado `README.md` no repositório do seu projeto no GitHub. A formatação será aplicada automaticamente quando você visualizar o arquivo no GitHub.
