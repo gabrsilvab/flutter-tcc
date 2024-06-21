@@ -3,6 +3,9 @@
 ## Sobre
 Este aplicativo foi desenvolvido por [Gabriel Silva](https://github.com/gabrsilvab/) com Flutter como parte do Trabalho de Conclusão de Curso (TCC) do Curso Técnico de Desenvolvimento de Sistemas do Senai Shunji Nishimura. Atualmente, está em modo Beta, desenvolvido para a KratosFit e funcionando com a API de [Gabriel P.](https://github.com/gabsouzkkj/).
 
+## Apresentação
+[Vídeo](https://youtu.be/Q3NJwts0YAI)
+
 ## Funcionalidades
 - **Cadastro de Usuários**: Permite que novos usuários se cadastrem na plataforma.
 - **Autenticação**: Login seguro para usuários registrados.
