@@ -4,6 +4,7 @@
 Este aplicativo foi desenvolvido por [Gabriel Silva](https://github.com/gabrsilvab/) com Flutter como parte do Trabalho de Conclusão de Curso (TCC) do Curso Técnico de Desenvolvimento de Sistemas do Senai Shunji Nishimura. Atualmente, está em modo Beta, desenvolvido para a KratosFit e funcionando com a API de [Gabriel P.](https://github.com/gabsouzkkj/).
 
 ## Apresentação
+[Imagens](https://drive.google.com/drive/folders/1hqys81BZ9TYitqrlU9ADGO8T2GJ2FY0Z?usp=sharing)
 [Vídeo](https://youtu.be/Q3NJwts0YAI)
 
 ## Funcionalidades
